@@ -64,15 +64,15 @@ register_knitr_engine <- function(override = TRUE) {
 #' @export
 eng_cmdstan <- function(options) {
   require_suggested_package("knitr")
-  output_var <- options$output.var
-  if (!is.character(output_var) || length(output_var) != 1L) {
-    stop(
-      "The chunk option output.var must be a character string ",
-      "providing a name for the returned `CmdStanModel` object.",
-      call. = FALSE
-    )
-  }
   if (options$eval) {
+    output_var <- options$output.var
+    if (!is.character(output_var) || length(output_var) != 1L) {
+      stop(
+        "The chunk option output.var must be a character string ",
+        "providing a name for the returned `CmdStanModel` object.",
+        call. = FALSE
+      )
+    }
     if (options$cache) {
       cache_path <- options$cache.path
       if (length(cache_path) == 0L || is.na(cache_path) || cache_path == "NA") {
